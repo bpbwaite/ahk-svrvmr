@@ -22,11 +22,10 @@ The script is to be launched *after* VR has completely loaded, and the Voicemeet
 | Name               | Default Value                        | Type    | Range        | Description                                                    |
 | :----------------- | :----------------------------------- | :------ | :----------- | :------------------------------------------------------------- |
 | *HMD_Bus*          | "2"                                  | Integer | 0 to 7       | determines which Voicemeeter bus to use (output used by HMD)   |
-| *VRActivePid*      | "vrserver.exe"                       | PID     |              | the process name whose mixer will be monitored                 |
 | *busGain*          | 0.0                                  | Float   | -60.0 to 0.0 | output bus gain on startup (might be overridden)               |
 | *gainCurve*        | 4.0                                  | Float   | ~3 to ~5     | *See the follwing equation:*                                   |
 | *gainOffset*       | 1.0                                  | Float   | >= 0.0       | $Gain = Gain_{offset} - 60e ^ {-Curve * Input}$                |
-| *Update_Period_ms* | 500                                  | Integer | >= 1         | dashboard volume slider check period                           |
+| *Update_Period_ms* | 100                                  | Integer | >= 1         | volume slider check period                                     |
 | *VMR_DLL_DRIVE*    | "C:"                                 | String  |              | adjust only if you have a nonstandard voicemeeter installation |
 | *VMR_DLL_DIRPATH*  | "Program Files (x86)\VB\Voicemeeter" | String  |              | adjust only if you have a nonstandard voicemeeter installation |
 
