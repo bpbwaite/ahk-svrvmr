@@ -1,6 +1,6 @@
 # ahk-svrvmr
 
-# SteamVR VoiceMeeter-Remote (SVRVMR)
+## AutoHotkey SteamVR Voicemeeter-Remote (SVRVMR)
 
 ## by bradynp
 
@@ -8,25 +8,24 @@
 
 * Performance
 
-the script usually makes a single DLL call twice per second\
-when adjusting volume, it makes an additional DLL call\
-script is to be launched after VR has completely loaded\
-see example\
-voicemeeter audio engine may need a reboot
+The script makes an infrequent DLL call to get the volume level set in the SteamVR Dashboard.\
+While adjusting the volume, it makes additional DLL calls to Voicemeeter.\
+The script is to be launched *after* VR has completely loaded, and the Voicemeeter Audio Engine must be running.
 
 * Adjustable Parameters
 
-global HMD_Bus := "1" ; determines which voicemeeter bus (0-2/4 on banana, 0-4/7 on potato) to use, default: 4
-global VRActivePid := "firefox.exe" ; the process name whose mixer will be monitored
-global busGain = 0.0 ; device gain on startup
-global gainCurve = 4.0
-global Update_Period_ms := 500 ; how often to check the dashboard volume slider, default: 500
+| Name               | Default Value                        | Type    | Range        | Description                                                    |
+| :----------------- | :----------------------------------- | :------ | :----------- | :------------------------------------------------------------- |
+| *HMD_Bus*          | "2"                                  | Integer | 0 to 7       | determines which Voicemeeter bus to use (output used by HMD)   |
+| *VRActivePid*      | "vrserver.exe"                       | PID     |              | the process name whose mixer will be monitored                 |
+| *busGain*          | 0.0                                  | Float   | -60.0 to 0.0 | output bus gain on startup (not fully implemented yet)         |
+| *gainCurve*        | 4.0                                  | Float   | ~3 to ~5     | *See the follwing equation:*                                   |
+| *gainOffset*       | 1.0                                  | Float   | >= 0.0       | $Gain = Gain_{offset} - 60e ^ {-Curve * Input}$                |
+| *Update_Period_ms* | 500                                  | Integer | >= 1         | dashboard volume slider check period                           |
+| *VMR_DLL_DRIVE*    | "C:"                                 | String  |              | only adjust if you have a nonstandard voicemeeter installation |
+| *VMR_DLL_DIRPATH*  | "Program Files (x86)\VB\Voicemeeter" | String  |              | only adjust if you have a nonstandard voicemeeter installation |
 
-; only adjust the following if you have a nonstandard voicemeeter installation!!
-global VMR_DLL_DRIVE := "C:"
-global VMR_DLL_DIRPATH := "Program Files (x86)\VB\Voicemeeter"
-global VMR_DLL_FILENAME_32 := "VoicemeeterRemote.dll"
-global VMR_DLL_FILENAME_64 := "VoicemeeterRemote64.dll"
+---
 
 * Errors & Solutions
 
