@@ -1,3 +1,4 @@
+#SetWorkingDir, %A_ScriptDir%
 #Include VA.ahk
 ; required library.
 #Persistent
